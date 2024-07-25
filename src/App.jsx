@@ -1,29 +1,38 @@
-// import { useState } from "react"
-import Container from 'react-bootstrap/Container';
-import NavBar from './assets/NavBar';
+import axios from "axios";
+import { useState } from "react"
 
 
 function App() {
-  // const [rollno , setRollno]=useState("");
-  // const [name , setName]=useState("");
-  // const [city , setCity]=useState("");
-  // const [fees , setFees]=useState("");
+
+  // const[rollno,setRollno]=useState("");
+  // const[name,setName]=useState("");
+  // const[city,setCity]=useState("");
+  // const[fees,setFees]=useState("");
+  const[input,setInput]=useState("");
+  const handleInput=(e)=>{
+    let name=e.terget.name;
+    let value=e.target.value;
+    setInput((values)=>({...values, [name]:value}))
+    console.timeLog(input)
+  }
+  const handleSubmit=()=>{
+      let api="http://localhost:3000/Student";
+      axios.post(api.input).then((res)=>{
+        console.log(res);
+        alert("data save succsefully !!!");
+      })
+  }
   return (
     <>
-     <Container>
-         <NavBar/>   
-
-     </Container>
-      {/* Enter Rollno : <input type="text" value={rollno} onChange={(e)=>{setRollno(e.target.value)}}/>
-      <br></br>
-      Enter Name : <input type="text" value={name} onChange={(e)=>{setName(e.target.value)}}/>
-      <br></br>
-      Enter City : <input type="text" value={city} onChange={(e)=>{setCity(e.target.value)}}/>
-      <br></br>
-      Enter fees : <input type="text" value={fees} onChange={(e)=>{setFees(e.target.value)}}/>
-      <br></br>
-     <button>Data save !!!</button> */}
-
+     Enter Rollno : <input type="text" name="rollno"value={input.rollno} onChange={handleInput}/>
+     <br></br>
+     Enter Name : <input type="text" name="name" value={input.name} onChange={handleInput}/>
+     <br></br>
+     Enter city : <input type="text" name="city" value={input.city} onChange={handleInput}/>
+     <br></br>
+     Enter fees : <input type="text" name="fees" value={input.fees} onChange={handleInput}/>
+     <br></br>
+     <button onClick={handleSubmit}>Data Save!!</button>
     </>
   )
 }

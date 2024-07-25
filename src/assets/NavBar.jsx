@@ -1,22 +1,25 @@
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Layout from "./Layout";
+import Home from "./Home";
+import Search from "./Search";
+import Display from "./Display";
 
 
-const NavBar=()=>{
-    return(
-        <>
-        <Navbar bg="primary" data-bs-theme="dark">
-        <Container>
-          <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#search">Search</Nav.Link>
-            <Nav.Link href="#pricing">Display</Nav.Link>
-          </Nav>
-        </Container>
-      </Navbar>
-        </>
-    )
+const Navbar = () => {
+  return (
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="home" element={<Home />} />
+            <Route path="search" element={<Search />} />
+            <Route path="display" element={<Display />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+
+    </>
+  )
 }
-export default NavBar;
+export default Navbar;
