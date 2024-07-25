@@ -17,7 +17,7 @@ function App() {
   }
   const handleSubmit=()=>{
       let api="http://localhost:3000/Student";
-      axios.post(api.input).then((res)=>{
+      axios.post(api, input).then((res)=>{
         console.log(res);
         alert("data save succsefully !!!");
       })
@@ -25,13 +25,13 @@ function App() {
   return (
     <>
      Enter Rollno : <input type="text" name="rollno"value={input.rollno} onChange={handleInput}/>
-     <br></br>
+     <br/><br/>
      Enter Name : <input type="text" name="name" value={input.name} onChange={handleInput}/>
-     <br></br>
+     <br/><br/>
      Enter city : <input type="text" name="city" value={input.city} onChange={handleInput}/>
-     <br></br>
+     <br/><br/>
      Enter fees : <input type="text" name="fees" value={input.fees} onChange={handleInput}/>
-     <br></br>
+     <br/><br/>
      <button onClick={handleSubmit}>Data Save!!</button>
     </>
   )
